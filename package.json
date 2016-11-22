@@ -17,5 +17,11 @@
   },
   "homepage": "https://github.com/coveo/devops-coding-challenge#readme",
   "dependencies": {
+    "aws-sdk": "^2.7.5",
+    "bluebird": "^3.4.6",
+    "cli-table": "^0.3.1",
+    "colors": "^1.1.2",
+    "commander": "^2.9.0",
+    "table": "^3.8.3"
   }
 }
