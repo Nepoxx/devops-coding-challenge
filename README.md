@@ -22,7 +22,7 @@ The tool is a shell command line utility (could be either Windows, Mac or Linux)
 - Ability to group information by [regions](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html) (-g, --group)
 
 ##### Estimated Monthly Cost
-The estimated monthly cost of a bucket is a pessimistic and rough estimate. While Amazon does provide an API to get current pricing info, the returned JSON is about 50 megabytes and is overkill for this application, therefore the pricing is hardcoded and will therefore not update. 
+The estimated monthly cost of a bucket is a pessimistic and rough estimate. While Amazon does [provide an API to get current pricing info](https://aws.amazon.com/blogs/aws/new-aws-price-list-api/), the returned JSON is about 50 megabytes and is overkill for this application, therefore the pricing is hardcoded and will therefore not update. 
 
 Since S3's pricing also varies depending on storage (the cost of the first terabyte is not the same as the next 49 and so on), a pessimistic assumption was made and always uses highest price per GB.
 
