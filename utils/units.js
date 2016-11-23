@@ -7,8 +7,15 @@ const bytesConversion = {
   tb: 1024 * 1024 * 1024 * 1024
 }
 
+const decimalPlacesToKeep = 3;
+const decimalMult = Math.pow(10, decimalPlacesToKeep);
+
 function convertBytesToUnit(bytes, unit) {
-  return Math.round(bytes / bytesConversion[unit.toLowerCase()] * 1000) / 1000;
+  const unitConvertionMultiplier = bytesConversion[unit.toLowerCase()]
+  if (!unitConvertionMultiplier) {
+    throw new Error('Unsupported storage unit');
+  }
+  return Math.round(bytes / unitConvertionMultiplier * decimalMult) / decimalMult;
 }
 
 module.exports = {
