@@ -2,12 +2,7 @@ const bluebird = require('bluebird');
 
 const units = require('./units');
 
-const storageClassPricing = {
-  STANDARD: 1,
-  REDUCED_REDUNDANCY: 2,
-  GLACIER: 3
-}
-
+// See README about this ugly object
 const pricingPerRegionPerGigabyte = {
   'us-east-1': {
     STANDARD: 0.03,

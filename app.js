@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 'use strict';
 
 const packageInfo = require('./package.json');
@@ -27,6 +29,11 @@ program
 
 const awsAccessKey = program.awsAccessKey || process.env.AWS_ACCESS_KEY_ID;
 const awsSecret = program.awsSecret || process.env.AWS_SECRET_ACCESS_KEY;
+
+if (!awsAccessKey || !awsSecret) {
+  console.error('An AWS access key id amd AWS secret access key are required.');
+  process.exit(1);
+}
 
 if (program.verbose) {
   console.log(`Selected unit: ${program.unit}`);
@@ -101,11 +108,28 @@ s3
             bucketInfo.estimatedPrice,
           ];
         })
-    }, { concurrency: 10 })
+    }, { concurrency: 10 });
   })
   .then(buckets => {
-    const tableData = [tableHeader].concat(buckets);
-    console.log(table(tableData));
+    if (program.group) {
+      const entriesByRegion = {};
+
+      buckets.forEach(bucket => {
+        const region = bucket[2]; // I dislike magic numbers as much as the next guy, but this prevents converting objects to arrays needlessly (the 'table' library only supports arrays, not objects)
+        if (!entriesByRegion[region]) entriesByRegion[region] = [];
+        entriesByRegion[region].push(bucket);
+      })
+
+      Object.keys(entriesByRegion).forEach(region => {
+        console.log(`Region: ${region}`);
+        const tableData = [tableHeader].concat(entriesByRegion[region]);
+        console.log(table(tableData));
+      })
+
+    } else {
+      const tableData = [tableHeader].concat(buckets);
+      console.log(table(tableData));
+    }
   })
   .catch(err => {
     console.log(err ? err.stack : 'Unknown error');

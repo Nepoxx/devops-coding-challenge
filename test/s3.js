@@ -34,7 +34,6 @@ describe('s3', () => {
             expect(err).to.equal(fakeError);
           })
         })
-
     });
   });
 });

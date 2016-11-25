@@ -2,18 +2,18 @@
 ### The Challenge
 Your challenge, should you choose to accept it, is to develop an AWS S3 storage analysis tool. To test your tool, you will have to create a free [Amazon](http://aws.amazon.com/en/free/) account (if you don't already have one).
 
-### TODO
-- -g option
-- tests
-- moar documentation
-
 ### Specifications
 The tool is a shell command line utility (could be either Windows, Mac or Linux) that returns informations over all [S3](https://aws.amazon.com/documentation/s3/) buckets in an Amazon account.
 
 ### Usage
 
-`npm install`
+`npm install` or `npm install --production` (will not download nor install dev dependencies)
+
 `node app.js --help` for additional information
+
+Run tests using `npm test`
+
+This tool can be installed as a 'proper' command line tool by using `npm install -g`. `s3tool` becomes available in your shell.
 
 
 ### Why Node.js?
@@ -47,8 +47,10 @@ The estimated cost only includes passive storage, transfer, api call, etc. are n
 
 ### Considerations
 
-While I've tried to make the code production ready, I've taken a few shortcuts for simplicity and convenience's sake. TypeScript would be a good addition and improve maintability. 
+While I've tried to make the code somewhat production ready, I've taken a few shortcuts for simplicity and convenience's sake. TypeScript would be a good addition and in my opinion improve maintability. 
 
-Additional tests such as E2E tests would be desireable. 
+Additional tests such as E2E tests would be desireable. Test coverage reports would be awesome.
 
 Refining the cost estimate would be another nice touch.
+
+Linting would be a must.
